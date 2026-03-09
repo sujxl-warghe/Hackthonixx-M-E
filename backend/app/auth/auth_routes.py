@@ -116,7 +116,19 @@ async def login(auth: AuthModel):
             raise HTTPException(401, "Invalid credentials")
         
         token = create_token(email)
-        return {"access_token": token}
+        
+        # Build user profile for frontend based on email prefix
+        user_name = email.split('@')[0].replace('.', ' ').title()
+        
+        return {
+            "access_token": token,
+            "user": {
+                "id": str(user.get("_id", email)),
+                "name": f"{user_name}",
+                "email": email,
+                "role": "student"
+            }
+        }
     except HTTPException:
         raise
     except Exception as e:

@@ -3,7 +3,7 @@ from app.config import GROQ_API_KEY
 
 
 # Graceful local fallback when GROQ_API_KEY isn't provided or request fails
-def ask_groq(prompt: str):
+def ask_groq(prompt: str, system_prompt: str = "You are a helpful RAG assistant for college admissions"):
     if not GROQ_API_KEY:
         return "[Local dev] GROQ API key not configured. Skipping model call."
 
@@ -12,7 +12,7 @@ def ask_groq(prompt: str):
         res = client.chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
-                {"role": "system", "content": "You are a helpful RAG assistant for college admissions"},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt}
             ],
             max_tokens=500,  # Limit response length for faster generation

@@ -7,14 +7,17 @@ from datetime import datetime, timedelta
 
 router = APIRouter(prefix="/dashboard", tags=["Dashboard"])
 
+def get_future_date_string(days_ahead: int) -> str:
+    return (datetime.now() + timedelta(days=days_ahead)).strftime("%Y-%m-%d")
+
 # Mock data for dashboard
 MOCK_EVENTS = [
-    {"id": "1", "title": "College Annual Fest", "date": "2026-02-20", "daysRemaining": 9, "type": "event"},
-    {"id": "2", "title": "Guest Lecture - Cloud Computing", "date": "2026-02-18", "daysRemaining": 7, "type": "event"},
+    {"id": "1", "title": "College Annual Fest", "date": get_future_date_string(9), "daysRemaining": 9, "type": "event"},
+    {"id": "2", "title": "Guest Lecture - Cloud Computing", "date": get_future_date_string(3), "daysRemaining": 3, "type": "event"},
 ]
 
 MOCK_QUIZZES = [
-    {"id": "1", "title": "Complete Java Lab Assignment", "date": "2026-02-11", "priority": "High", "type": "quiz"},
+    {"id": "1", "title": "Complete Java Lab Assignment", "date": get_future_date_string(2), "priority": "High", "type": "quiz"},
 ]
 
 MOCK_TASKS = [
@@ -23,7 +26,7 @@ MOCK_TASKS = [
 ]
 
 MOCK_ASSIGNMENTS = [
-    {"id": "1", "title": "Economics Research Paper", "date": "2026-02-22", "type": "assignment"},
+    {"id": "1", "title": "Economics Research Paper", "date": get_future_date_string(7), "type": "assignment"},
 ]
 
 MOCK_SUBJECTS = [
