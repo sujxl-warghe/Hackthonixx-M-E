@@ -42,7 +42,7 @@ A full-stack AI-powered chat application built with FastAPI and Next.js, featuri
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone "https://github.com/sujxl-warghe/Hackthonixx-M-E"
 cd kdk-college-ai-fastapi
 ```
 
