@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+python-jose
+passlib[bcrypt]
+motor
+groq
+sentence-transformers
+pymupdf
+python-multipart
